@@ -47,7 +47,7 @@ Essa abordagem visa fortalecer a presença da empresa no mercado, criando soluç
 Para acessar o código do projeto, clone o repositório:
 
 ```bash
-git clone https://github.com/ALLEfSM/insights
+git clone https://github.com/ALLEfSM/Sprintv4
 ```
 
 ---
