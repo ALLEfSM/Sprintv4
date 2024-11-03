@@ -38,7 +38,7 @@ Essa abordagem visa fortalecer a presença da empresa no mercado, criando soluç
 
 ## 🎥 Apresentação do Projeto
 
-> **Demonstração da análise de feedbacks em tempo real**: [Vídeo de Demonstração](https://youtu.be/BFlACjsGUAw)
+> **Demonstração da análise de feedbacks em tempo real**: [Vídeo de Demonstração](https://youtu.be/REGvUsKg2Io)
 
 ---
 
