@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Listar Produtos</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .table {
+            margin: auto;
+            width: 80%;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+        color: #fff;
+        background-color: #495057;
+        border-color: #000000;
+        }
+        .btn-outline-danger {
+            margin-left: 10px;
+        }
+        .alert {
+            width: 80%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Lista de Produtos</h1>
+    <div class="alert alert-success" th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}"></div>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Valor</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="prod:${produtos}">
+            <td th:text="${prod.nome}"></td>
+            <td th:text="${prod.valor}"></td>
+            <td>
+                <a th:href="@{/produto/editar/}+${prod.id}" class="btn btn-outline-primary">Editar</a>
+                <button th:onclick="|produtoId.value = ${prod.id}|" type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Remover
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/produto/cadastrar}" class="btn btn-success">Cadastrar Produto</a>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmação</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir o produto?
+                </div>
+                <div class="modal-footer">
+                    <form th:action="@{/produto/excluir}" method="post">
+                        <input type="hidden" name="id" id="produtoId"/>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Não</button>
+                        <button type="submit" class="btn btn-danger">Sim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

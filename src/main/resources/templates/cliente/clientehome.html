@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Clientes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+        color: #fff;
+        background-color: #495057;
+        border-color: #000000;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container">
+    <h1>Gerenciar Clientes</h1>
+
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/cadastrar}" class="btn btn-primary">Cadastrar Novo Cliente</a>
+    <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/cliente/listar}" class="btn btn-primary">Visualizar Clientes</a>
+</div>
+</body>
+</html>

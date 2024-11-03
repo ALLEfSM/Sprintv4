@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/springsecurity5"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editando Cliente</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+        color: #fff;
+        background-color: #495057;
+        border-color: #000000;
+        }
+        .btn-success {
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container">
+    <h1>Editar Cliente</h1>
+    <form th:action="@{/cliente/editar}" th:object="${cliente}" method="post">
+
+        <input th:field="*{id}" type="hidden"/>
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Dê um nome ao cliente">
+            <p th:if="${#fields.hasErrors('nome')}" class="text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">CPF</label>
+            <input class="form-control" th:field="*{cpf}" type="text" id="cpf" placeholder="Informe o CPF">
+            <p th:if="${#fields.hasErrors('cpf')}" class="text-danger" th:errors="*{cpf}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data de Nascimento</label>
+            <input class="form-control" th:field="*{dataNascimento}" type="date" id="dataNascimento">
+            <p th:if="${#fields.hasErrors('dataNascimento')}" class="text-danger" th:errors="*{dataNascimento}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <input class="form-control" th:field="*{email}" type="email" id="email" placeholder="Informe o novo e-mail">
+            <p th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">senha</label>
+            <input class="form-control" th:field="*{senha}" type="password" id="senha" placeholder="Informe o nova senha">
+            <p th:if="${#fields.hasErrors('senha')}" class="text-danger" th:errors="*{senha}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+        <br>
+        <p th:text="${msg}" class="text-success text-center"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

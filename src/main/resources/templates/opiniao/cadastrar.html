@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastrar Opinião</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #343a40;
+            margin-bottom: 30px;
+        }
+        .btn-primary {
+            color: #fff;
+            background-color: #495057;
+            border-color: #000000;
+        }
+        .btn-success {
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+        .product-info {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container">
+    <h1>Dar Feedback</h1>
+
+
+
+    <div class="alert alert-success" th:if="!${#strings.isEmpty(mensagem)}" th:text="${mensagem}"></div>
+    <form th:action="@{/opiniao/cadastrar}" th:object="${opiniao}" method="post">
+        <div class="mb-3">
+            <label class="form-label">Comentário</label>
+            <textarea class="form-control" th:field="*{comentario}" id="comentario" rows="4"></textarea>
+            <p th:if="${#fields.hasErrors('comentario')}" class="text-danger" th:errors="*{comentario}"></p>
+        </div>
+        <button class="btn btn-success">Cadastrar</button>
+    </form>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
